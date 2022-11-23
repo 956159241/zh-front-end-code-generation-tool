@@ -1,10 +1,20 @@
 import { RouteRecordRaw } from 'vue-router';
 
 export const basicRoutes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   redirect: '/',
-  // },
+  {
+    path: '/',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('../../views/home/index.vue'),
+  },
+  {
+    path: '/vue3',
+    name: 'vue3',
+    component: () => import('../../views/vue3PageDesigner/index.vue'),
+  },
   // {
   //   path: '/examples',
   //   name: 'examples',
