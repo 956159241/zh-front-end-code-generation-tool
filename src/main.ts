@@ -12,6 +12,9 @@ import ElementPlus from 'element-plus';
 import * as Icons from '@element-plus/icons-vue';
 import locale from 'element-plus/lib/locale/lang/zh-cn';
 import Draggable from 'vuedraggable';
+import 'virtual:svg-icons-register'
+import { Splitpanes, Pane } from 'splitpanes';
+import 'splitpanes/dist/splitpanes.css';
 // import { setupMock } from '@/mock/index';
 
 async function boostrap() {
@@ -37,6 +40,8 @@ async function boostrap() {
 
     // 加载draggable
     app.component('draggable', Draggable);
+    app.component('Splitpanes', Splitpanes);
+    app.component('Pane', Pane);
 
     app.mount('#app');
 }
