@@ -13,7 +13,7 @@ export const basicRoutes: Array<RouteRecordRaw> = [
   {
     path: '/vue3',
     name: 'vue3',
-    component: () => import('../../views/vue3PageDesigner/index.vue'),
+    component: () => import('../../views/vue3-page-designer/index.vue'),
   },
   // {
   //   path: '/examples',
