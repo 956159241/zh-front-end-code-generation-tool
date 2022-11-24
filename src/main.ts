@@ -15,7 +15,7 @@ import Draggable from 'vuedraggable';
 import 'virtual:svg-icons-register'
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
-// import { setupMock } from '@/mock/index';
+import { setupI18n } from './locales/setupI18n';
 
 async function boostrap() {
     const app = createApp(App);
@@ -37,6 +37,9 @@ async function boostrap() {
     //   }  
     // 加载Element Plus
     app.use(ElementPlus, { locale });
+
+    // 多语言配置
+    await setupI18n(app);
 
     // 加载draggable
     app.component('draggable', Draggable);
