@@ -1,4 +1,9 @@
 export default {
+  header: {
+    name: 'vue3 Page Design'
+  },
+
+
   api: {
     operationFailed: 'Operation failed',
     errorTip: 'Error Tip',

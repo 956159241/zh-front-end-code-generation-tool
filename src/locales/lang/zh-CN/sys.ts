@@ -1,4 +1,10 @@
 export default {
+  header: {
+    name: 'vue3 界面设计'
+  },
+
+
+
   api: {
     operationFailed: '操作失败',
     errorTip: '错误提示',
