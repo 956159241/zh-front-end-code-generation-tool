@@ -18,7 +18,7 @@
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
-                <component :is="ZHButton" :field="widget" :key="widget.id" :index-of-parent-list="index"
+                <component :is="ZHRow" :field="widget" :key="widget.id" :index-of-parent-list="index"
                     :parent-widget="null" :design-state="true">
                 </component>
             </template>
@@ -32,6 +32,7 @@ import draggable from 'vuedraggable';
 import { ElButton, ElInput } from 'element-plus';
 // import Widgets from '../widget-panel/widget-lib/widgets/index';
 import ZHButton from '../widget-panel/widget-lib/widgets/button-widget.vue';
+import ZHRow from '../widget-panel/widget-lib/widgets/container-widget/row-widget.vue'
 import { TPage } from '../type';
 
 

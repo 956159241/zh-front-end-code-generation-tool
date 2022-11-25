@@ -7,8 +7,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { PropType, ref, toRefs } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
+import { TPage } from '../type';
+const props = defineProps({
+    page: {
+        type: Object as PropType<TPage>, //PropType<FormSettingsModel>
+        required: true, // 必传
+    },
+});
+const { page } = toRefs(props);
 
 const activeName = ref('first')
 
