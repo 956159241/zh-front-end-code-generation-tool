@@ -1,7 +1,35 @@
 <template>
-    <el-scrollbar class="side-scroll-bar" style="height: 100%;">
+    <el-scrollbar class="scroll-bar" style="height: 100%;">
         <el-collapse v-model="activeName" class="widget-collapse">
-            <el-collapse-item name="1" title="基础控件">
+            <el-collapse-item name="1" title="高集成控件">
+                <draggable tag="ul" :list="basicFields" item-key="key"
+                    :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
+                    :sort="false">
+                    <template #item="{ element: fld }">
+                        <li class="field-widget-item" :title="fld.displayName">
+                            <span>
+                                <i :class="'iconfont icon-' + fld.icon" />
+                                {{ fld.type }}
+                            </span>
+                        </li>
+                    </template>
+                </draggable>
+            </el-collapse-item>
+            <el-collapse-item name="2" title="容器控件">
+                <draggable tag="ul" :list="basicFields" item-key="key"
+                    :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
+                    :sort="false">
+                    <template #item="{ element: fld }">
+                        <li class="field-widget-item" :title="fld.displayName">
+                            <span>
+                                <i :class="'iconfont icon-' + fld.icon" />
+                                {{ fld.type }}
+                            </span>
+                        </li>
+                    </template>
+                </draggable>
+            </el-collapse-item>
+            <el-collapse-item name="3" title="基础控件">
                 <draggable tag="ul" :list="basicFields" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
                     :sort="false">
@@ -48,7 +76,7 @@ const cloneDog = (x: any) => {
 </script>
 
 <style lang="scss" scoped>
-.side-scroll-bar {
+.scroll-bar {
     ul {
         padding: 0px;
         margin: 0px;

@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14341991",
+      "name": "left-arrow",
+      "font_class": "left-arrow",
+      "unicode": "e7c0",
+      "unicode_decimal": 59328
+    },
+    {
+      "icon_id": "240317",
+      "name": "move",
+      "font_class": "move",
+      "unicode": "e6fd",
+      "unicode_decimal": 59133
+    },
+    {
+      "icon_id": "248953",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "1225391",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    },
+    {
+      "icon_id": "1225393",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "4767021",
+      "name": "arrowup",
+      "font_class": "arrowup",
+      "unicode": "e7ee",
+      "unicode_decimal": 59374
+    },
+    {
+      "icon_id": "8092166",
+      "name": "eye close-fill",
+      "font_class": "eyeclose-fill",
+      "unicode": "e8ff",
+      "unicode_decimal": 59647
+    },
+    {
       "icon_id": "5127233",
       "name": "checkbox-checked",
       "font_class": "checkbox-checked",

@@ -1,23 +1,37 @@
 <template>
-    <h1>界面配置</h1>
-    <draggable class="draggable-box" :list="myArray"
-        v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
-        @start="onStart" @end="onEnd" item-key="id" :clone="cloneDog" :sort="true">
-        <template #item="{ element: widget, index }">
-            <div>
-                <component :is="ElButton" :field="widget" :key="widget.id" :index-of-parent-list="index"
-                    :parent-widget="null" :design-state="true">
-                </component>
+    <div class="header">
+        <el-row>
+            <el-col :span="12"></el-col>
+            <el-col :span="24">
+                <el-button type="primary" link>清空</el-button>
+                <el-button type="primary" link>预览</el-button>
+                <el-button type="primary" link>导入JSON</el-button>
+                <el-button type="primary" link>导出JSON</el-button>
+                <el-button type="primary" link>导出代码</el-button>
+                <el-button type="primary" link>下载代码</el-button>
+            </el-col>
+        </el-row>
 
-                <component :is="ElInput" :field="widget" :key="widget.id" :index-of-parent-list="index"
-                    :parent-widget="null" :design-state="true">
-                </component>
-            </div>
+    </div>
+    <el-scrollbar class="scroll-bar">
+        <draggable class="draggable-box" :list="myArray"
+            v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
+            @start="onStart" @end="onEnd" item-key="id" :clone="cloneDog" :sort="true">
+            <template #item="{ element: widget, index }">
+                <div>
+                    <component :is="ZHButton" :field="widget" :key="widget.id" :index-of-parent-list="index"
+                        :parent-widget="null" :design-state="true">
+                    </component>
+
+                    <!-- <component :is="ElInput" :field="widget" :key="widget.id" :index-of-parent-list="index"
+                        :parent-widget="null" :design-state="true">
+                    </component> -->
+                </div>
 
 
-        </template>
+            </template>
 
-        <!-- <template #item="{ element: field }">
+            <!-- <template #item="{ element: field }">
             <li class="field-widget-item" :title="field.displayName">
                 <span>
                     <svg-icon :icon-class="field.icon" class-name="color-svg-icon" />
@@ -25,7 +39,7 @@
                 </span>
             </li>
         </template> -->
-        <!-- <draggable :list="designer.widgetList" item-key="id"
+            <!-- <draggable :list="designer.widgetList" item-key="id"
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" tag="transition-group"
             :component-data="{ name: 'fade' }" handle=".drag-handler" @end="onDragEnd" @add="onDragAdd"
             @update="onDragUpdate" :move="checkMove">
@@ -44,15 +58,19 @@
                 </div>
             </template>
         </draggable> -->
-    </draggable>
+        </draggable>
+    </el-scrollbar>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import { ElButton, ElInput } from 'element-plus'
-
+// import Widgets from '../widget-panel/widget-lib/widgets/index';
+import ZHButton from '../widget-panel/widget-lib/widgets/button-widget.vue'
 const activeName = ref('1');
+
+// const widgetList = [...Widgets];
 
 const drag = ref(false);
 //定义要被拖拽对象的数组
@@ -76,10 +94,23 @@ const cloneDog = ({ id }) => {
 </script>
 
 <style lang="scss" scoped>
-.draggable-box {
-    height: 100%;
-    width: 100%;
+.header {
+    height: 30px;
 }
+
+.scroll-bar {
+    height: calc(100% - 30px);
+    // &:deep(.el-scrollbar__view) {
+    //     height: 100%;
+    // }
+
+    .draggable-box {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+
 
 .drag-handler {
     position: absolute;
@@ -88,7 +119,7 @@ const cloneDog = ({ id }) => {
     left: -2px;
     height: 22px;
     line-height: 22px;
-    background: red;
+    background: var(--el-color-primary);
     z-index: 9;
 
     i {
