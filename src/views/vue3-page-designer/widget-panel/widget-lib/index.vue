@@ -8,7 +8,7 @@
                     <template #item="{ element: fld }">
                         <li class="field-widget-item" :title="fld.displayName">
                             <span>
-                                <svg-icon :icon-class="fld.icon" class-name="color-svg-icon" />
+                                <i :class="'iconfont icon-' + fld.icon" />
                                 {{ fld.type }}
                             </span>
                         </li>
@@ -46,3 +46,28 @@ const cloneDog = (x: any) => {
     };
 };
 </script>
+
+<style lang="scss" scoped>
+.side-scroll-bar {
+    ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    &:deep(.el-collapse) {
+        background-color: transparent;
+        --el-collapse-header-bg-color: transparent;
+        --el-collapse-content-bg-color: transparent;
+    }
+}
+
+.field-widget-item {
+    text-decoration: none;
+    list-style: none;
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+    line-height: 40px;
+    cursor: pointer;
+}
+</style>

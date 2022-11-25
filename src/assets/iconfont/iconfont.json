@@ -1,0 +1,72 @@
+{
+  "id": "3790716",
+  "name": "code-generation-tool",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5127233",
+      "name": "checkbox-checked",
+      "font_class": "checkbox-checked",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "6151391",
+      "name": "angle-double-up",
+      "font_class": "angle-double-up",
+      "unicode": "e849",
+      "unicode_decimal": 59465
+    },
+    {
+      "icon_id": "6664173",
+      "name": "input",
+      "font_class": "input",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "7239677",
+      "name": "colum-height",
+      "font_class": "colum-height",
+      "unicode": "e721",
+      "unicode_decimal": 59169
+    },
+    {
+      "icon_id": "7520697",
+      "name": "layer-number",
+      "font_class": "layer-number",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11134481",
+      "name": "多选框",
+      "font_class": "duoxuankuang",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "12243730",
+      "name": "checkbox",
+      "font_class": "checkbox",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "22237772",
+      "name": "textarea",
+      "font_class": "textarea",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "22273229",
+      "name": "radio-on",
+      "font_class": "radio-on",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    }
+  ]
+}

@@ -9,13 +9,13 @@
         </div>
         <div class="content">
             <splitpanes class="default-theme" style="height: 100%">
-                <pane :size="25">
+                <pane :size="25" class="pane">
                     <widget-panel></widget-panel>
                 </pane>
-                <pane :size="50">
+                <pane :size="50" class="pane">
                     <page-widget></page-widget>
                 </pane>
-                <pane :size="25">
+                <pane :size="25" class="pane">
                     <setting-panel></setting-panel>
                 </pane>
             </splitpanes>
@@ -59,6 +59,11 @@ const changLan = (val: string) => {
 
     .content {
         flex: 1;
+        overflow: auto;
+    }
+
+    .pane {
+        padding: 0px 10px;
     }
 }
 </style>

@@ -37,3 +37,17 @@ a:hover {
 /* div:focus {
     outline: none;
 } */
+
+
+.ghost {
+    content: '';
+    font-size: 0;
+    height: 3px;
+    box-sizing: border-box;
+    background: red;
+    border: 2px solid red;
+    outline-width: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+}

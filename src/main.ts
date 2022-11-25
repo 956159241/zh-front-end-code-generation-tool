@@ -1,3 +1,4 @@
+import './assets/iconfont/iconfont.css';
 import './styles/element-override.css';
 import './styles/iconfont-override.css';
 import 'element-plus/dist/index.css';
