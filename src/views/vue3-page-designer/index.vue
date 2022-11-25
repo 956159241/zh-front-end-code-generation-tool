@@ -10,13 +10,13 @@
         <div class="content">
             <splitpanes class="default-theme" style="height: 100%">
                 <pane :size="25" class="pane">
-                    <widget-panel></widget-panel>
+                    <widget-panel :page="page"></widget-panel>
                 </pane>
                 <pane :size="50" class="pane">
-                    <page-widget></page-widget>
+                    <page-widget :page="page"></page-widget>
                 </pane>
                 <pane :size="25" class="pane">
-                    <setting-panel></setting-panel>
+                    <setting-panel :page="page"></setting-panel>
                 </pane>
             </splitpanes>
         </div>
@@ -30,6 +30,8 @@ import { ref } from 'vue';
 import WidgetPanel from './widget-panel/index.vue';
 import SettingPanel from './setting-panel/index.vue';
 import PageWidget from './page-widget/index.vue';
+import { TPage } from './type';
+import { v4 as uuidv4 } from 'uuid';
 
 const { changeLocale } = useLocale();
 const { t } = useI18n();
@@ -38,8 +40,13 @@ const lang = ref('中文');
 
 const changLan = (val: string) => {
     changeLocale(val === '中文' ? 'zh_CN' : 'en');
-
 };
+
+const page = ref({
+    settings: { name: `name${uuidv4()}`, },
+    widgets: [],
+    selectedWidgets: [],
+} as TPage);
 
 
 </script>
