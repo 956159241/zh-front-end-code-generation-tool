@@ -1,13 +1,4 @@
-const modules = import.meta.globEager('./*.vue');
-
-export default {
-	install(app) {
-		for (const path in modules) {
-			let cname = modules[path].default.name;
-			app.component(cname + '-control', modules[path].default);
-		}
-	},
-};
+const modules = import.meta.globEager('./**/*.vue');
 
 let controls = {};
 for (const path in modules) {
