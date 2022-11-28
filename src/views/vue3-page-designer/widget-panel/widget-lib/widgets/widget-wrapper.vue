@@ -74,6 +74,10 @@ const selectField = (field: any) => {
 
 </script>
 
+<script lang="ts">
+export default { name: 'widget-wrapper' };
+</script>
+
 <style lang="scss" scoped>
 .widget-wrapper {
   position: relative;

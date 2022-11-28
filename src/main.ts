@@ -18,6 +18,8 @@ import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import { setupI18n } from './locales/setupI18n';
 
+import vue3PageDesigin from '@/views/vue3-page-designer/widget-panel/widget-lib/widgets/index';
+
 async function boostrap() {
     const app = createApp(App);
 
@@ -46,6 +48,10 @@ async function boostrap() {
     app.component('draggable', Draggable);
     app.component('Splitpanes', Splitpanes);
     app.component('Pane', Pane);
+
+    // 批量注册vue3-page-designer组件
+    vue3PageDesigin.install(app);
+
 
     app.mount('#app');
 }

@@ -18,8 +18,7 @@
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
-                <component :is="ZHRow" :field="widget" :key="widget.id" :index-of-parent-list="index"
-                    :parent-widget="null" :design-state="true">
+                <component :is="ZHRow" :key="widget.id">
                 </component>
             </template>
         </draggable>
@@ -27,14 +26,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, toRefs, PropType } from 'vue';
+import { ref, toRefs, PropType, onMounted } from 'vue';
 import draggable from 'vuedraggable';
 import { ElButton, ElInput } from 'element-plus';
 // import Widgets from '../widget-panel/widget-lib/widgets/index';
-import ZHButton from '../widget-panel/widget-lib/widgets/button-widget.vue';
+// import ZHButton from '../widget-panel/widget-lib/widgets/button-widget.vue';
 import ZHRow from '../widget-panel/widget-lib/widgets/container-widget/row-widget.vue'
 import { TPage } from '../type';
 import Page from '../page';
+import controls from '../widget-panel/widget-lib/widgets/index';
+
+// const allControls = { ...controls };
+
+const getC = () => { return controls['row-control']; };
+
+// onMounted(() => {
+//     return controls['row'];
+// });
 
 
 const props = defineProps({

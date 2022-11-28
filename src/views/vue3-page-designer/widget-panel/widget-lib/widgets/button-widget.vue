@@ -14,6 +14,10 @@ import WidgetWrapper from './widget-wrapper.vue';
 
 </script>
 
+<script lang="ts">
+export default { name: 'button' };
+</script>
+
 <!-- <script>
 import StaticContentWrapper from './static-content-wrapper'
 // import emitter from '@/utils/emitter'

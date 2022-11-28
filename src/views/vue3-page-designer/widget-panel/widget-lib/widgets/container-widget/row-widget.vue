@@ -9,6 +9,10 @@
 import ColWidget from './col-widget.vue';
 </script>
 
+<script lang="ts">
+export default { name: 'row' };
+</script>
+
 <style lang="scss" scoped>
 .row {
   min-height: 50px;

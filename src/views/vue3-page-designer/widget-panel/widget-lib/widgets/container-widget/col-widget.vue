@@ -88,6 +88,10 @@ const selectField = (field: any) => {
 
 </script>
 
+<script lang="ts">
+export default { name: 'column' };
+</script>
+
 <style lang="scss" scoped>
 .column {
   min-height: 38px !important;
