@@ -1,45 +1,30 @@
 <template>
 
   <el-col class="column" v-bind="layoutProps">
-    <draggable :list="[{}, {}, {}]" item-key="id" v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 200 }"
-      tag="transition-group" :component-data="{ name: 'fade' }" handle=".drag-handler">
+    <draggable :list="widget.widgets" item-key="id" v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 200 }"
+      :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
+      style="height: 100%; width: 100%;">
       <template #item="{ element: subWidget, index: swIdx }">
         <div class="form-widget-list">
-          <component :is="ZHButton" :field="subWidget" :key="subWidget.id" :index-of-parent-list="swIdx"
-            :parent-widget="null" :design-state="true">
+          <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget">
           </component>
         </div>
       </template>
     </draggable>
 
-    <template v-if="true">
+    <!-- <template v-if="true">
       <div class="field-action">
         <span><i class="iconfont icon-left-arrow" /></span>
         <span><i class="iconfont icon-up" /></span>
         <span><i class="iconfont icon-down" /></span>
         <span><i class="iconfont icon-delete" /></span>
-
-        <!-- <i title="Test">
-          <svg-icon icon-class="el-back" />
-        </i> -->
-        <!-- <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveUpWidget')"
-          @click.stop="moveUpWidget(field)">
-          <svg-icon icon-class="el-move-up" />
-        </i>
-        <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveDownWidget')"
-          @click.stop="moveDownWidget(field)">
-          <svg-icon icon-class="el-move-down" />
-        </i>
-        <i :title="i18nt('designer.hint.remove')" @click.stop="removeFieldWidget">
-          <svg-icon icon-class="el-delete" />
-        </i> -->
       </div>
 
       <div class="drag-handler background-opacity">
         <span><i class="iconfont icon-move" /></span>
         <span style="font-size: 12px;color: white;">栅格列</span>
       </div>
-    </template>
+    </template> -->
 
     <!-- <div class="grid-col-action" v-if="designer.selectedId === widget.id && widget.type === 'grid-col'">
       <i :title="i18nt('designer.hint.selectParentWidget')" @click.stop="selectParentWidget(widget)">
@@ -69,8 +54,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { PropType, ref, toRefs } from 'vue';
 import ZHButton from '../../../widget-lib/widgets/button-widget.vue';
+
+const props = defineProps({
+  widget: {
+    type: Object as PropType<any>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
+});
+const { widget } = toRefs(props);
 
 const layoutProps = ref({
   span: 12,
@@ -78,6 +71,10 @@ const layoutProps = ref({
   push: 0,
   pull: 0,
 });
+
+const getComponentName = (widget: any) => {
+  return widget.type + '-control';
+}
 
 const selectField = (field: any) => {
   // if (!!this.designer) {
@@ -96,13 +93,14 @@ export default { name: 'column' };
 .column {
   min-height: 38px !important;
   padding: 3px;
-  outline: 1px dashed var(--el-color-primary);
+  // outline: 1px dashed var(--el-color-primary);
   position: relative;
+  border: 1px dashed rgba(170, 170, 170, 0.75);
 }
 
 .field-action {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   right: 5px;
   height: 22px;
   line-height: 22px;

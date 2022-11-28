@@ -4,17 +4,24 @@
       <slot></slot>
     </div>
 
-    <template v-if="true">
+    <!-- <template v-if="true">
       <div class="field-action">
         <span><i class="iconfont icon-left-arrow" /></span>
         <span><i class="iconfont icon-up" /></span>
         <span><i class="iconfont icon-down" /></span>
         <span><i class="iconfont icon-delete" /></span>
+      </div>
 
-        <!-- <i title="Test">
+      <div class="drag-handler background-opacity">
+        <span><i class="iconfont icon-move" /></span>
+        <span style="font-size: 12px;color: white;">按钮</span>
+      </div>
+    </template> -->
+
+    <!-- <i title="Test">
           <svg-icon icon-class="el-back" />
         </i> -->
-        <!-- <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveUpWidget')"
+    <!-- <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveUpWidget')"
           @click.stop="moveUpWidget(field)">
           <svg-icon icon-class="el-move-up" />
         </i>
@@ -25,13 +32,6 @@
         <i :title="i18nt('designer.hint.remove')" @click.stop="removeFieldWidget">
           <svg-icon icon-class="el-delete" />
         </i> -->
-      </div>
-
-      <div class="drag-handler background-opacity">
-        <span><i class="iconfont icon-move" /></span>
-        <span style="font-size: 12px;color: white;">按钮</span>
-      </div>
-    </template>
 
     <!-- <template v-if="!!this.designer">
       <div class="field-action" v-if="designer.selectedId === field.id">
@@ -133,7 +133,7 @@ export default { name: 'widget-wrapper' };
 }
 
 .static-content-item {
-  outline: 2px solid var(--el-color-primary);
+  // outline: 2px solid var(--el-color-primary);
   min-height: 20px;
   display: flex;
   /* 垂直居中 */

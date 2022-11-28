@@ -18,7 +18,7 @@
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
-                <component :is="getComponentName(widget)" :key="widget.id">
+                <component :is="getComponentName(widget)" :key="widget.id" :widget="widget">
                 </component>
             </template>
         </draggable>
@@ -33,7 +33,7 @@ import Page from '../page';
 
 // const allControls = { ...controls };
 
-function getComponentName(widget: any) {
+const getComponentName = (widget: any) => {
     return widget.type + '-control';
 }
 
@@ -65,13 +65,6 @@ const onStart = () => {
 //拖拽结束事件
 const onEnd = () => {
     drag.value = false;
-};
-
-const cloneDog = ({ id }) => {
-    return {
-        id: 100,
-        name: `cat ${100}`
-    };
 };
 </script>
 

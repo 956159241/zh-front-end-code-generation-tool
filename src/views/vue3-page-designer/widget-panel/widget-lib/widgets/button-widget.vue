@@ -15,7 +15,7 @@ import WidgetWrapper from './widget-wrapper.vue';
 </script>
 
 <script lang="ts">
-export default { name: 'button' };
+export default { name: 'zbutton' };
 </script>
 
 <!-- <script>

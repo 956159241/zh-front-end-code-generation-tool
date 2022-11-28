@@ -13,6 +13,7 @@ export const containerControls = [
 		type: 'row',
 		category: 'container',
 		icon: 'input',
+		cols: [],
 		rows: [],
 		options: {
 			name: '',
@@ -24,7 +25,7 @@ export const containerControls = [
 
 export const basicControls = [
 	{
-		type: 'button',
+		type: 'zbutton',
 		icon: 'textarea',
 		formItemFlag: false,
 		options: {
