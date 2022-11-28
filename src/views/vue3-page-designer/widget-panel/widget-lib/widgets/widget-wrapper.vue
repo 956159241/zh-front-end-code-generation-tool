@@ -4,8 +4,9 @@
       <slot></slot>
     </div>
 
-    <!-- <template v-if="true">
-      <div class="field-action">
+    <template v-if="true">
+      <div class="field-action"
+        v-if="page.data && page.data.value && page.data.value.selectedWidgets.find(x => x.id === widget.id)">
         <span><i class="iconfont icon-left-arrow" /></span>
         <span><i class="iconfont icon-up" /></span>
         <span><i class="iconfont icon-down" /></span>
@@ -14,9 +15,9 @@
 
       <div class="drag-handler background-opacity">
         <span><i class="iconfont icon-move" /></span>
-        <span style="font-size: 12px;color: white;">按钮</span>
+        <!-- <span style="font-size: 12px;color: white;">按钮</span> -->
       </div>
-    </template> -->
+    </template>
 
     <!-- <i title="Test">
           <svg-icon icon-class="el-back" />
@@ -65,12 +66,28 @@
 </template>
 
 <script lang="ts" setup>
+import Page from '@/views/vue3-page-designer/page';
+import { PropType, toRefs } from 'vue';
+
 const selectField = (field: any) => {
   // if (!!this.designer) {
   //   this.designer.setSelected(field)
   //   this.designer.emitEvent('field-selected', this.parentWidget)  //发送选中组件的父组件对象
   // }
 };
+
+const props = defineProps({
+  widget: {
+    type: Object as PropType<any>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
+
+  page: {
+    type: Object as PropType<Page>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
+});
+const { widget, page } = toRefs(props);
 
 </script>
 

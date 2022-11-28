@@ -1,7 +1,7 @@
 <template>
     <el-scrollbar class="scroll-bar" style="height: 100%;">
         <el-collapse v-model="activeName" class="widget-collapse">
-            <el-collapse-item name="1" title="自定义控件">
+            <!-- <el-collapse-item name="1" title="自定义控件">
                 <draggable tag="ul" :list="customControls" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="handleContainerWidgetClone"
                     ghost-class="ghost" :sort="false">
@@ -14,7 +14,7 @@
                         </li>
                     </template>
                 </draggable>
-            </el-collapse-item>
+            </el-collapse-item> -->
             <el-collapse-item name="2" title="容器控件">
                 <draggable tag="ul" :list="containerControls" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="handleContainerWidgetClone"

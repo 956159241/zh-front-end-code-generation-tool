@@ -18,7 +18,7 @@
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
-                <component :is="getComponentName(widget)" :key="widget.id" :widget="widget">
+                <component :is="getComponentName(widget)" :key="widget.id" :widget="widget" :page="page">
                 </component>
             </template>
         </draggable>

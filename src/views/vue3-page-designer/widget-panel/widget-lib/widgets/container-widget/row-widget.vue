@@ -1,12 +1,13 @@
 <template>
   <el-row class="row">
     <template v-for="(colWidget, colIdx) in widget.cols" :key="colWidget.id">
-      <col-widget :widget="colWidget"></col-widget>
+      <col-widget :widget="colWidget" :page="page"></col-widget>
     </template>
   </el-row>
 </template>
 
 <script lang="ts" setup>
+import Page from '@/views/vue3-page-designer/page';
 import { PropType, toRefs } from 'vue';
 import ColWidget from './col-widget.vue';
 
@@ -15,8 +16,12 @@ const props = defineProps({
     type: Object as PropType<any>, //PropType<FormSettingsModel>
     required: true, // 必传
   },
+  page: {
+    type: Object as PropType<Page>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
 });
-const { widget } = toRefs(props);
+const { widget, page } = toRefs(props);
 
 
 </script>

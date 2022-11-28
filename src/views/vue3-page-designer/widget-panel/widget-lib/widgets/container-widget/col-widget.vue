@@ -6,7 +6,7 @@
       style="height: 100%; width: 100%;">
       <template #item="{ element: subWidget, index: swIdx }">
         <div class="form-widget-list">
-          <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget">
+          <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
           </component>
         </div>
       </template>
@@ -54,16 +54,21 @@
 </template>
 
 <script lang="ts" setup>
+import Page from '@/views/vue3-page-designer/page';
 import { PropType, ref, toRefs } from 'vue';
-import ZHButton from '../../../widget-lib/widgets/button-widget.vue';
 
 const props = defineProps({
   widget: {
     type: Object as PropType<any>, //PropType<FormSettingsModel>
     required: true, // 必传
   },
+
+  page: {
+    type: Object as PropType<Page>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
 });
-const { widget } = toRefs(props);
+const { widget, page } = toRefs(props);
 
 const layoutProps = ref({
   span: 12,
