@@ -1,8 +1,8 @@
 <template>
     <el-scrollbar class="scroll-bar" style="height: 100%;">
         <el-collapse v-model="activeName" class="widget-collapse">
-            <el-collapse-item name="1" title="高集成控件">
-                <draggable tag="ul" :list="basicFields" item-key="key"
+            <el-collapse-item name="1" title="自定义控件">
+                <draggable tag="ul" :list="customControls" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
                     :sort="false">
                     <template #item="{ element: fld }">
@@ -16,7 +16,7 @@
                 </draggable>
             </el-collapse-item>
             <el-collapse-item name="2" title="容器控件">
-                <draggable tag="ul" :list="basicFields" item-key="key"
+                <draggable tag="ul" :list="containerControls" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
                     :sort="false">
                     <template #item="{ element: fld }">
@@ -30,7 +30,7 @@
                 </draggable>
             </el-collapse-item>
             <el-collapse-item name="3" title="基础控件">
-                <draggable tag="ul" :list="basicFields" item-key="key"
+                <draggable tag="ul" :list="basicControls" item-key="key"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="cloneDog" ghost-class="ghost"
                     :sort="false">
                     <template #item="{ element: fld }">
@@ -50,7 +50,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import draggable from 'vuedraggable'
-import { containers as CONS, basicFields as BFS, advancedFields as AFS, customFields as CFS } from "./widgetsConfig"
+import { containerControls, basicControls, advancedControls, customControls } from "./widgetsConfig"
 import { v4 as uuidv4 } from 'uuid';
 import { computed } from '@vue/reactivity';
 
@@ -58,14 +58,6 @@ const activeName = ref('1');
 
 const drag = ref(false);
 
-const basicFields = computed(() => {
-    return BFS.map((x: any) => {
-        return {
-            ...x,
-            id: uuidv4(),
-        };
-    });
-});
 
 const cloneDog = (x: any) => {
     return {

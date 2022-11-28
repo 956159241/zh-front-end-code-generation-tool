@@ -32,6 +32,7 @@ import SettingPanel from './setting-panel/index.vue';
 import PageWidget from './page-widget/index.vue';
 import { TPage } from './type';
 import { v4 as uuidv4 } from 'uuid';
+import Page from './page';
 
 const { changeLocale } = useLocale();
 const { t } = useI18n();
@@ -42,11 +43,7 @@ const changLan = (val: string) => {
     changeLocale(val === '中文' ? 'zh_CN' : 'en');
 };
 
-const page = ref({
-    settings: { name: `name${uuidv4()}`, },
-    widgets: [],
-    selectedWidgets: [],
-} as TPage);
+const page = new Page();
 
 
 </script>

@@ -10,9 +10,10 @@
 import { PropType, ref, toRefs } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import { TPage } from '../type';
+import Page from '../page';
 const props = defineProps({
     page: {
-        type: Object as PropType<TPage>, //PropType<FormSettingsModel>
+        type: Object as PropType<Page>, //PropType<FormSettingsModel>
         required: true, // 必传
     },
 });

@@ -12,9 +12,9 @@
         </el-row>
 
     </div>
-    <div class="empty-widget" v-if="page.widgets.length === 0">请将组件拖拽到此处</div>
+    <div class="empty-widget" v-if="page.data.value.widgets.length === 0">请将组件拖拽到此处</div>
     <el-scrollbar class="scroll-bar">
-        <draggable class="draggable-box" :list="page.widgets"
+        <draggable class="draggable-box" :list="page.data.value.widgets"
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
@@ -34,11 +34,12 @@ import { ElButton, ElInput } from 'element-plus';
 import ZHButton from '../widget-panel/widget-lib/widgets/button-widget.vue';
 import ZHRow from '../widget-panel/widget-lib/widgets/container-widget/row-widget.vue'
 import { TPage } from '../type';
+import Page from '../page';
 
 
 const props = defineProps({
     page: {
-        type: Object as PropType<TPage>, //PropType<FormSettingsModel>
+        type: Object as PropType<Page>, //PropType<FormSettingsModel>
         required: true, // 必传
     },
 });
