@@ -9,4 +9,8 @@ export default class Page {
         widgets: [],
         selectedWidgets: [],
     } as TPage);
+
+    setSelectedWidgets = (widget: any) => {
+        this.data.value.selectedWidgets = [widget];
+    };
 }

@@ -1,6 +1,6 @@
 <template>
 
-  <el-col class="column" v-bind="layoutProps">
+  <el-col class="column" v-bind="layoutProps" @click.stop="selectField(widget)">
     <draggable :list="widget.widgets" item-key="id" v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 200 }"
       :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
       style="height: 100%; width: 100%;">
@@ -12,19 +12,21 @@
       </template>
     </draggable>
 
-    <!-- <template v-if="true">
-      <div class="field-action">
+    <template v-if="true">
+      <div class="field-action"
+        v-if="page.data && page.data.value && page.data.value.selectedWidgets.find(x => x.id === widget.id)">
         <span><i class="iconfont icon-left-arrow" /></span>
         <span><i class="iconfont icon-up" /></span>
         <span><i class="iconfont icon-down" /></span>
         <span><i class="iconfont icon-delete" /></span>
       </div>
 
-      <div class="drag-handler background-opacity">
-        <span><i class="iconfont icon-move" /></span>
+      <div class="drag-handler background-opacity"
+        v-if="page.data && page.data.value && page.data.value.selectedWidgets.find(x => x.id === widget.id)">
+        <!-- <span><i class="iconfont icon-move" /></span> -->
         <span style="font-size: 12px;color: white;">栅格列</span>
       </div>
-    </template> -->
+    </template>
 
     <!-- <div class="grid-col-action" v-if="designer.selectedId === widget.id && widget.type === 'grid-col'">
       <i :title="i18nt('designer.hint.selectParentWidget')" @click.stop="selectParentWidget(widget)">
@@ -81,11 +83,12 @@ const getComponentName = (widget: any) => {
   return widget.type + '-control';
 }
 
-const selectField = (field: any) => {
-  // if (!!this.designer) {
-  //   this.designer.setSelected(field)
-  //   this.designer.emitEvent('field-selected', this.parentWidget)  //发送选中组件的父组件对象
-  // }
+const selectField = (widget: any) => {
+  if (!!page && !!page.value) {
+    page.value.setSelectedWidgets(widget);
+    // this.designer.setSelected(field)
+    // this.designer.emitEvent('field-selected', this.parentWidget)  //发送选中组件的父组件对象
+  }
 };
 
 </script>

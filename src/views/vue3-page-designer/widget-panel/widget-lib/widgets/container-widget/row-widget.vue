@@ -1,5 +1,5 @@
 <template>
-  <el-row class="row">
+  <el-row class="row" @click.stop="selectField(widget)">
     <template v-for="(colWidget, colIdx) in widget.cols" :key="colWidget.id">
       <col-widget :widget="colWidget" :page="page"></col-widget>
     </template>
@@ -23,7 +23,13 @@ const props = defineProps({
 });
 const { widget, page } = toRefs(props);
 
-
+const selectField = (widget: any) => {
+  if (!!page && !!page.value) {
+    page.value.setSelectedWidgets(widget);
+    // this.designer.setSelected(field)
+    // this.designer.emitEvent('field-selected', this.parentWidget)  //发送选中组件的父组件对象
+  }
+};
 </script>
 
 <script lang="ts">
