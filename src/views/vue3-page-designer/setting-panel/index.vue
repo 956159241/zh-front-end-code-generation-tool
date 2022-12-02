@@ -1,8 +1,14 @@
 <template>
     <el-tabs v-model="activeName" class="tabs" @tab-click="handleClick">
-        <el-tab-pane label="组件设置" name="first">组件设置</el-tab-pane>
-        <el-tab-pane label="页面设置" name="second">页面设置</el-tab-pane>
-        <el-tab-pane label="数据源管理" name="third">数据源管理</el-tab-pane>
+        <el-tab-pane label="组件设置" name="first">
+            <ComponentSetting></ComponentSetting>
+        </el-tab-pane>
+        <el-tab-pane label="页面设置" name="second">
+            <PageSetting></PageSetting>
+        </el-tab-pane>
+        <el-tab-pane label="数据源管理" name="third">
+            <DBSetting></DBSetting>
+        </el-tab-pane>
     </el-tabs>
 </template>
 
@@ -11,6 +17,10 @@ import { PropType, ref, toRefs } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import { TPage } from '../type';
 import Page from '../page';
+import ComponentSetting from './commonet-setting/index.vue';
+import PageSetting from './page-setting/index.vue';
+import DBSetting from './db-setting/index.vue';
+
 const props = defineProps({
     page: {
         type: Object as PropType<Page>, //PropType<FormSettingsModel>
