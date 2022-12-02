@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { TWidget } from '../../type';
 
 export const customControls = [
 	{
@@ -8,17 +9,19 @@ export const customControls = [
 	},
 ];
 
-export const containerControls = [
+export const containerControls: Array<TWidget> = [
 	{
+		id: uuidv4(),
 		type: 'row',
-		category: 'container',
+		isContainer: true,
 		icon: 'input',
 		cols: [],
-		rows: [],
-		options: {
+		settings: {
+			height: '100px',
+			width: '',
 			name: '',
 			hidden: false,
-			customClass: '', //自定义css类名
+			customClass: '',
 		},
 	},
 ];

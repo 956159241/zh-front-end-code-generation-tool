@@ -15,8 +15,17 @@ export interface TWidget {
     id: string
     settings: TWidgetSettings
     widgets?: Array<TWidget>
+    cols?: Array<any>
 }
 
-export interface TWidgetSettings {
+export interface TWidgetCommonSettings {
+    name?: string
+    hidden?: boolean
+    customClass?: string
+    height?: string | number
+    width?: string | number
+}
+
+export interface TWidgetSettings extends TWidgetCommonSettings {
 
 }

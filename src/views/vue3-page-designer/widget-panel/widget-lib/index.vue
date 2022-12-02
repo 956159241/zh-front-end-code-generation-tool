@@ -88,7 +88,7 @@ const handleFieldWidgetClone = (origin: any) => {
 const handleContainerWidgetClone = (origin: any) => {
     let newCon = _.cloneDeep(origin)
     newCon.id = newCon.type.replace(/-/g, '') + uuidv4()
-    newCon.options.name = newCon.id
+    newCon.settings.name = newCon.id
     if (newCon.type === 'row') {
         let newCol = {
             id: '',
@@ -97,7 +97,7 @@ const handleContainerWidgetClone = (origin: any) => {
             icon: 'grid-col',
             internal: true,
             widgets: [],
-            options: {
+            settings: {
                 name: '',
                 hidden: false,
                 span: 12,
@@ -113,13 +113,13 @@ const handleContainerWidgetClone = (origin: any) => {
         };
         let tmpId = uuidv4()
         newCol.id = 'grid-col-' + tmpId
-        newCol.options.name = 'gridCol' + tmpId
+        newCol.settings.name = 'gridCol' + tmpId
         newCon.cols.push(newCol)
         //
         newCol = _.cloneDeep(newCol)
         tmpId = uuidv4()
         newCol.id = 'grid-col-' + tmpId
-        newCol.options.name = 'gridCol' + tmpId
+        newCol.settings.name = 'gridCol' + tmpId
         newCon.cols.push(newCol)
     } else if (newCon.type === 'table') {
         // let newRow = {cols: []}
