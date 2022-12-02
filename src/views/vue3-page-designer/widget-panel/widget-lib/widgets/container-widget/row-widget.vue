@@ -1,15 +1,19 @@
 <template>
-  <el-row class="row" @click.stop="selectField(widget)">
-    <template v-for="(colWidget, colIdx) in widget.cols" :key="colWidget.id">
-      <col-widget :widget="colWidget" :page="page"></col-widget>
-    </template>
-  </el-row>
+  <WidgetWrapper :page="page" :widget="widget" style="width: 100%;">
+    <el-row class="row" @click.stop="selectField(widget)" style="width: 100%;">
+      <template v-for="(colWidget, colIdx) in widget.cols" :key="colWidget.id">
+        <col-widget :widget="colWidget" :page="page"></col-widget>
+      </template>
+    </el-row>
+  </WidgetWrapper>
+
 </template>
 
 <script lang="ts" setup>
 import Page from '@/views/vue3-page-designer/page';
 import { PropType, toRefs } from 'vue';
 import ColWidget from './col-widget.vue';
+import WidgetWrapper from '../widget-wrapper.vue';
 
 const props = defineProps({
   widget: {
