@@ -57,11 +57,11 @@ const formModel = ref({
     columns: [],
 } as any);
 
-// const setFormModel = (value: any) => {
-//     if (!value || value.length === 0) return;
-//     const firstSelectedWidget: TRowWidget = value[0];
-//     formModel.value = firstSelectedWidget;
-// };
+const setFormModel = (value: any) => {
+    if (!value || value.length === 0) return;
+    const firstSelectedWidget: TRowWidget = value[0];
+    formModel.value = firstSelectedWidget;
+};
 
 // const validate = () => {
 //     if (!formModel || !formModel.value) return false;
@@ -85,9 +85,9 @@ const formModel = ref({
 //     setFormModel(selectedWidgets.value);
 // });
 
-// watch(() => selectedWidgets, (newVal: any, oldVal: any) => {
-//     setFormModel(newVal);
-// }, { immediate: true, deep: true });
+watch(() => selectedWidgets, (newVal: any, oldVal: any) => {
+    setFormModel(newVal.value);
+}, { immediate: true, deep: true });
 
 // watch(() => formModel, (newVal: any) => {
 //     if (!validate()) return;
