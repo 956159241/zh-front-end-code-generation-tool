@@ -86,41 +86,43 @@ const handleFieldWidgetClone = (origin: any) => {
 };
 
 const handleContainerWidgetClone = (origin: any) => {
-    let newCon = _.cloneDeep(origin)
-    newCon.id = newCon.type.replace(/-/g, '') + uuidv4()
-    newCon.settings.name = newCon.id
+    let newCon = _.cloneDeep(origin);
+    const uuid = uuidv4();
+    newCon.id = uuid;
+    newCon.settings.name = newCon.type.replace(/-/g, '') + '-' + uuid;
     if (newCon.type === 'row') {
         let newCol = {
             id: '',
-            type: 'grid-col',
-            category: 'container',
+            type: 'column',
+            isContainer: true,
             icon: 'grid-col',
             internal: true,
             widgets: [],
             settings: {
                 name: '',
-                hidden: false,
+                // hidden: false,
                 span: 12,
-                offset: 0,
-                push: 0,
-                pull: 0,
-                responsive: false,  //是否开启响应式布局
-                md: 12,
-                sm: 12,
-                xs: 12,
-                customClass: '',  //自定义css类名
+                // offset: 0,
+                // push: 0,
+                // pull: 0,
+                // responsive: false,  //是否开启响应式布局
+                // md: 12,
+                // sm: 12,
+                // xs: 12,
+                // customClass: '',  //自定义css类名
             }
         };
         let tmpId = uuidv4()
-        newCol.id = 'grid-col-' + tmpId
-        newCol.settings.name = 'gridCol' + tmpId
-        newCon.cols.push(newCol)
-        //
+        newCol.id = 'column-' + tmpId
+        newCol.settings.name = 'column' + tmpId
+        newCon.columns.push(newCol)
+
+
         newCol = _.cloneDeep(newCol)
         tmpId = uuidv4()
-        newCol.id = 'grid-col-' + tmpId
-        newCol.settings.name = 'gridCol' + tmpId
-        newCon.cols.push(newCol)
+        newCol.id = 'column-' + tmpId
+        newCol.settings.name = 'row-' + tmpId
+        newCon.columns.push(newCol)
     } else if (newCon.type === 'table') {
         // let newRow = {cols: []}
         // newRow.id = 'table-row-' + generateId()

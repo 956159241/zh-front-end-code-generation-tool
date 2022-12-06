@@ -1,21 +1,20 @@
-import { v4 as uuidv4 } from 'uuid';
-import { TWidget } from '../../type';
+import { TRowWidget, TWidget } from '../../type';
 
 export const customControls = [
 	{
-		id: uuidv4(),
+		id: '',
 		type: 'zhtable',
 		icon: 'input',
 	},
 ];
 
-export const containerControls: Array<TWidget> = [
+export const containerControls: Array<TRowWidget> = [
 	{
-		id: uuidv4(),
+		id: '',
 		type: 'row',
 		isContainer: true,
 		icon: 'input',
-		cols: [],
+		columns: [],
 		settings: {
 			height: '100px',
 			width: '',

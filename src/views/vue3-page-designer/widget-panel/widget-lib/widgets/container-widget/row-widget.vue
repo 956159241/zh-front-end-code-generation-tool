@@ -1,7 +1,7 @@
 <template>
   <WidgetWrapper :page="page" :widget="widget" style="width: 100%;">
     <el-row class="row" @click.stop="selectField(widget)" style="width: 100%;">
-      <template v-for="(colWidget, colIdx) in widget.cols" :key="colWidget.id">
+      <template v-for="(colWidget, colIdx) in widget.columns" :key="colWidget.id">
         <col-widget :widget="colWidget" :page="page"></col-widget>
       </template>
     </el-row>
@@ -14,10 +14,11 @@ import Page from '@/views/vue3-page-designer/page';
 import { PropType, toRefs } from 'vue';
 import ColWidget from './col-widget.vue';
 import WidgetWrapper from '../widget-wrapper.vue';
+import { TRowWidget } from '@/views/vue3-page-designer/type';
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<any>, //PropType<FormSettingsModel>
+    type: Object as PropType<TRowWidget>, //PropType<FormSettingsModel>
     required: true, // 必传
   },
   page: {

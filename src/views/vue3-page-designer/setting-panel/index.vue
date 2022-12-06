@@ -1,7 +1,7 @@
 <template>
     <el-tabs v-model="activeName" class="tabs" @tab-click="handleClick">
         <el-tab-pane label="组件设置" name="first">
-            <ComponentSetting></ComponentSetting>
+            <ComponentSetting :page="page"></ComponentSetting>
         </el-tab-pane>
         <el-tab-pane label="页面设置" name="second">
             <PageSetting></PageSetting>

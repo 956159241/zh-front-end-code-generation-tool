@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia';
 // import { createLocalStorage } from '/@/utils/cache';
 import { store } from '@/stores';
+import { TRowWidget } from './type';
 
 export const useStore = defineStore({
     id: 'vue3-page-designer',
     state: () => ({
         // localInfo: lsLocaleSetting,
-        selectedWidgets: [],
+        selectedWidgets: [] as Array<TRowWidget>,
     }),
 
     getters: {
@@ -20,7 +21,7 @@ export const useStore = defineStore({
 
     actions: {
 
-        setselectedWidgets(widgets: any) {
+        setselectedWidgets(widgets: Array<TRowWidget>) {
             this.selectedWidgets = widgets;
         }
         // /**

@@ -1,5 +1,4 @@
 <template>
-
   <el-col class="column" v-bind="layoutProps" @click.stop="selectField(widget)">
     <draggable :list="widget.widgets" item-key="id" v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 200 }"
       :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"

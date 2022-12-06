@@ -1,12 +1,12 @@
 <template>
     <el-scrollbar class="box">
-        <RowSetting></RowSetting>
+        <RowSetting v-if="selectedWidgetType === 'row'" :page="page"></RowSetting>
     </el-scrollbar>
 
 </template>
 
 <script lang="ts" setup>
-import { PropType, toRefs } from 'vue';
+import { computed, PropType, toRefs } from 'vue';
 import Page from '../../page';
 import RowSetting from './RowSetting.vue';
 
@@ -17,6 +17,10 @@ const props = defineProps({
     },
 });
 const { page } = toRefs(props);
+
+const selectedWidgetType = computed(() => {
+    return page.value && page.value.data.value.selectedWidgets && page.value.data.value.selectedWidgets[0] && page.value.data.value.selectedWidgets[0].type;
+});
 </script>
 
 <style lang="scss" scoped>

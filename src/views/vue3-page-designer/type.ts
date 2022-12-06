@@ -1,7 +1,7 @@
 export interface TPage {
     settings: TPageSettngs,
-    widgets: Array<TWidget>
-    selectedWidgets: Array<TWidget>
+    widgets: Array<TRowWidget>
+    selectedWidgets: Array<TRowWidget>
 }
 
 export interface TPageSettngs {
@@ -13,9 +13,17 @@ export interface TWidget {
     isContainer: boolean
     icon?: string
     id: string
-    settings: TWidgetSettings
-    widgets?: Array<TWidget>
-    cols?: Array<any>
+    settings: TRowWidgetSettings
+    widgets?: Array<TRowWidget>
+}
+
+export interface TRowWidget extends TWidget {
+    columns: Array<TColumnWidget>
+}
+
+export interface TColumnWidget extends TWidget {
+    span?: number
+    height?: number | string
 }
 
 export interface TWidgetCommonSettings {
@@ -26,6 +34,7 @@ export interface TWidgetCommonSettings {
     width?: string | number
 }
 
-export interface TWidgetSettings extends TWidgetCommonSettings {
+export interface TRowWidgetSettings extends TWidgetCommonSettings {
+    gutter?: number
 
 }
