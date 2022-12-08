@@ -1,0 +1,21 @@
+.zh-table {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .zh-form .el-form-item {
+    margin-right: 15px;
+  }
+
+  .zh-table-pagination {
+    margin: 10px 0px 0px 0px;
+    justify-content: end;
+  }
+
+  .zh-el-table {
+    .el-button+.el-button {
+      margin-left: 0px !important;
+    }
+  }
+
+}

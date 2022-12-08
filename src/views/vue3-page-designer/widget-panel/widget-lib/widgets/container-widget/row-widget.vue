@@ -1,6 +1,6 @@
 <template>
-  <container-wrapper :page="page" :widget="widget" style="width: 100%; height: 100%;">
-    <el-row class="row" :style="{ width: '100%', height: widget.settings.height, }" :gutter="widget.settings.gutter"
+  <container-wrapper :page="page" :widget="widget" :style="{ width: '100%', height: widget.settings.height, }">
+    <el-row class="row" :style="{ width: '100%', height: '100%', }" :gutter="widget.settings.gutter"
       @click.stop="selectField(widget)">
       <template v-for="(colWidget, colIdx) in widget.columns" :key="colWidget.id">
         <col-widget :widget="colWidget" :page="page" :span="colWidget.span"></col-widget>
