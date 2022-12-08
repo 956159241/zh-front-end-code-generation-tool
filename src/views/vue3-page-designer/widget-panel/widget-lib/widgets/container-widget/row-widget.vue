@@ -1,11 +1,12 @@
 <template>
-  <WidgetWrapper :page="page" :widget="widget" style="width: 100%;">
-    <el-row class="row" @click.stop="selectField(widget)" style="width: 100%;">
+  <container-wrapper :page="page" :widget="widget" style="width: 100%; height: 100%;">
+    <el-row class="row" :style="{ width: '100%', height: widget.settings.height, }" :gutter="widget.settings.gutter"
+      @click.stop="selectField(widget)">
       <template v-for="(colWidget, colIdx) in widget.columns" :key="colWidget.id">
-        <col-widget :widget="colWidget" :page="page"></col-widget>
+        <col-widget :widget="colWidget" :page="page" :span="colWidget.span"></col-widget>
       </template>
     </el-row>
-  </WidgetWrapper>
+  </container-wrapper>
 
 </template>
 
@@ -13,7 +14,7 @@
 import Page from '@/views/vue3-page-designer/page';
 import { PropType, toRefs } from 'vue';
 import ColWidget from './col-widget.vue';
-import WidgetWrapper from '../widget-wrapper.vue';
+import ContainerWrapper from './container-wrapper.vue';
 import { TRowWidget } from '@/views/vue3-page-designer/type';
 
 const props = defineProps({

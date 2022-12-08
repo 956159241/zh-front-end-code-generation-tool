@@ -63,7 +63,9 @@ const page = new Page();
 
     .content {
         flex: 1;
-        overflow: auto;
+        overflow: hidden;
+        height: 100%;
+        padding: 10px;
     }
 
     .pane {

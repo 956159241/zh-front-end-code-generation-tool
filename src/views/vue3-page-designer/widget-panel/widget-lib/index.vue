@@ -55,6 +55,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { computed } from '@vue/reactivity';
 import _ from 'lodash';
 import { controls } from '@/views/vue3-page-designer/widget-panel/widget-lib/widgets/index';
+import { ElScrollbar, ElCollapse, ElCollapseItem } from 'element-plus';
+import { TColumnWidget } from '../../type';
 
 
 const activeName = ref('1');
@@ -91,17 +93,17 @@ const handleContainerWidgetClone = (origin: any) => {
     newCon.id = uuid;
     newCon.settings.name = newCon.type.replace(/-/g, '') + '-' + uuid;
     if (newCon.type === 'row') {
-        let newCol = {
+        let newCol: TColumnWidget = {
             id: '',
+            name: '',
             type: 'column',
             isContainer: true,
             icon: 'grid-col',
-            internal: true,
+            // internal: true,
             widgets: [],
+            span: 12,
             settings: {
-                name: '',
                 // hidden: false,
-                span: 12,
                 // offset: 0,
                 // push: 0,
                 // pull: 0,
@@ -114,14 +116,14 @@ const handleContainerWidgetClone = (origin: any) => {
         };
         let tmpId = uuidv4()
         newCol.id = 'column-' + tmpId
-        newCol.settings.name = 'column' + tmpId
+        newCol.name = 'column' + tmpId
         newCon.columns.push(newCol)
 
 
         newCol = _.cloneDeep(newCol)
         tmpId = uuidv4()
         newCol.id = 'column-' + tmpId
-        newCol.settings.name = 'row-' + tmpId
+        newCol.name = 'row-' + tmpId
         newCon.columns.push(newCol)
     } else if (newCon.type === 'table') {
         // let newRow = {cols: []}

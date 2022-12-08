@@ -1,15 +1,8 @@
 <template>
-  <el-col class="column" v-bind="layoutProps" @click.stop="selectField(widget)">
-    <draggable :list="widget.widgets" item-key="id" v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 200 }"
-      :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
-      style="height: 100%; width: 100%;">
-      <template #item="{ element: subWidget, index: swIdx }">
-        <div class="form-widget-list">
-          <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
-          </component>
-        </div>
-      </template>
-    </draggable>
+  <div class="widget-wrapper" :class="{ 'design-time-bottom-margin': true, height: widget.settings.height }">
+    <div class="static-content-item" @click.stop="selectField(widget)" :class="{ height: widget.settings.height }">
+      <slot></slot>
+    </div>
 
     <template v-if="true">
       <div class="field-action"
@@ -22,45 +15,20 @@
 
       <div class="drag-handler background-opacity"
         v-if="page.data && page.data.value && page.data.value.selectedWidgets.find(x => x.id === widget.id)">
-        <!-- <span><i class="iconfont icon-move" /></span> -->
-        <span style="font-size: 12px;color: white;">栅格列</span>
+        <span><i class="iconfont icon-move" /></span>
       </div>
     </template>
-
-    <!-- <div class="grid-col-action" v-if="designer.selectedId === widget.id && widget.type === 'grid-col'">
-      <i :title="i18nt('designer.hint.selectParentWidget')" @click.stop="selectParentWidget(widget)">
-        <svg-icon icon-class="el-back" />
-      </i>
-      <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveUpWidget')"
-        @click.stop="moveUpWidget()">
-        <svg-icon icon-class="el-move-up" />
-      </i>
-      <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveDownWidget')"
-        @click.stop="moveDownWidget()">
-        <svg-icon icon-class="el-move-down" />
-      </i>
-      <i :title="i18nt('designer.hint.cloneWidget')" @click.stop="cloneGridCol(widget)">
-        <svg-icon icon-class="el-clone" />
-      </i>
-      <i :title="i18nt('designer.hint.remove')" @click.stop="removeWidget">
-        <svg-icon icon-class="el-delete" />
-      </i>
-    </div>
-
-    <div class="grid-col-handler" v-if="designer.selectedId === widget.id && widget.type === 'grid-col'">
-      <i>{{ i18nt('designer.widgetLabel.' + widget.type) }}</i>
-    </div> -->
-  </el-col>
-
+  </div>
 </template>
 
 <script lang="ts" setup>
 import Page from '@/views/vue3-page-designer/page';
-import { PropType, ref, toRefs, computed } from 'vue';
+import { TRowWidget } from '@/views/vue3-page-designer/type';
+import { PropType, toRefs } from 'vue';
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<any>, //PropType<FormSettingsModel>
+    type: Object as PropType<TRowWidget>, //PropType<FormSettingsModel>
     required: true, // 必传
   },
 
@@ -68,30 +36,10 @@ const props = defineProps({
     type: Object as PropType<Page>, //PropType<FormSettingsModel>
     required: true, // 必传
   },
-
-  span: {
-    type: Object as PropType<number | undefined>
-  },
 });
-const { widget, page, span } = toRefs(props);
+const { widget, page } = toRefs(props);
 
-const layoutProps = computed(() => {
-  return {
-    span: span?.value && Number(span?.value) || 0,
-    offset: 0,
-  };
-});
 
-// const layoutProps = ref({
-//   span: span || 0,
-//   offset: 0,
-//   push: 0,
-//   pull: 0,
-// });
-
-const getComponentName = (widget: any) => {
-  return widget.type + '-control';
-}
 
 const selectField = (widget: any) => {
   if (!!page && !!page.value) {
@@ -104,135 +52,86 @@ const selectField = (widget: any) => {
 </script>
 
 <script lang="ts">
-export default { name: 'column' };
+export default { name: 'container-wrapper' };
 </script>
 
 <style lang="scss" scoped>
-.column {
-  min-height: 38px !important;
-  padding: 3px;
-  // outline: 1px dashed var(--el-color-primary);
+.widget-wrapper {
   position: relative;
-  border: 1px dashed rgba(170, 170, 170, 0.75);
-}
 
-.field-action {
-  position: absolute;
-  bottom: 0px;
-  right: 5px;
-  height: 22px;
-  line-height: 22px;
-  z-index: 9;
+  .field-action {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    height: 22px;
+    line-height: 22px;
+    z-index: 9;
 
-  i {
-    font-size: 14px;
-    color: var(--el-color-primary);
-    margin: 0 5px;
-    cursor: pointer;
+    i {
+      font-size: 14px;
+      color: var(--el-color-primary);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  }
+
+  .drag-handler {
+    position: absolute;
+    top: 0;
+    //bottom: -22px;  /* 拖拽手柄位于组件下方，有时无法正常拖动，原因未明？？ */
+    left: 5px;
+    height: 16px;
+    line-height: 16px;
+    background: var(--el-color-primary);
+    opacity: 0.5;
+    z-index: 9;
+
+    .iconfont {
+      font-size: 12px;
+      font-style: normal;
+      color: white;
+      margin: 4px;
+      cursor: move;
+    }
+
+    &:hover {
+      //opacity: 1;
+      // background: red;
+    }
   }
 }
 
+.field-action,
 .drag-handler {
-  position: absolute;
-  top: 0;
-  left: 5px;
-  height: 16px;
-  line-height: 16px;
-  background: var(--el-color-primary);
-  opacity: 0.5;
-  z-index: 9;
-
-  .iconfont {
-    font-size: 12px;
-    font-style: normal;
-    color: white;
-    margin: 4px;
-    cursor: move;
-  }
-
-  &:hover {
-    //opacity: 1;
-    // background: red;
+  :deep(.svg-icon) {
+    margin-left: 0.1em;
+    margin-right: 0.1em;
   }
 }
 
+.static-content-item {
+  // outline: 2px solid var(--el-color-primary);
+  min-height: 20px;
+  display: flex;
+  /* 垂直居中 */
+  align-items: center;
+  // margin: 5px;
+  /* 垂直居中 */
+  margin: 5px;
 
-// .widget-wrapper {
-//   position: relative;
+  :deep(.el-divider--horizontal) {
+    margin: 0;
+  }
+}
 
-//   .field-action {
-//     position: absolute;
-//     bottom: 0;
-//     right: 5px;
-//     height: 22px;
-//     line-height: 22px;
-//     z-index: 9;
+.el-form-item.selected,
+.static-content-item.selected {
+  outline: 2px solid var(--el-color-primary)
+}
 
-//     i {
-//       font-size: 14px;
-//       color: var(--el-color-primary);
-//       margin: 0 5px;
-//       cursor: pointer;
-//     }
-//   }
-
-//   .drag-handler {
-//     position: absolute;
-//     top: 0;
-//     //bottom: -22px;  /* 拖拽手柄位于组件下方，有时无法正常拖动，原因未明？？ */
-//     left: 5px;
-//     height: 16px;
-//     line-height: 16px;
-//     background: var(--el-color-primary);
-//     opacity: 0.5;
-//     z-index: 9;
-
-//     .iconfont {
-//       font-size: 12px;
-//       font-style: normal;
-//       color: white;
-//       margin: 4px;
-//       cursor: move;
-//     }
-
-//     &:hover {
-//       //opacity: 1;
-//       // background: red;
-//     }
-//   }
-// }
-
-// .field-action,
-// .drag-handler {
-//   :deep(.svg-icon) {
-//     margin-left: 0.1em;
-//     margin-right: 0.1em;
-//   }
-// }
-
-// .static-content-item {
-//   outline: 2px solid var(--el-color-primary);
-//   min-height: 20px;
-//   display: flex;
-//   /* 垂直居中 */
-//   align-items: center;
-//   // margin: 5px;
-//   /* 垂直居中 */
-//   margin: 5px;
-
-//   :deep(.el-divider--horizontal) {
-//     margin: 0;
-//   }
-// }
-
-// .el-form-item.selected,
-// .static-content-item.selected {
-//   outline: 2px solid var(--el-color-primary)
-// }
-
-// .background-opacity {
-//   background: rgba(255, 0, 0, 0.5);
-// }
+.background-opacity {
+  background: rgba(255, 0, 0, 0.5);
+}
 </style>
 
 <!-- <script>

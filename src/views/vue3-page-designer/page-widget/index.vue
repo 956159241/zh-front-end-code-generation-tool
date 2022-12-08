@@ -13,8 +13,8 @@
 
     </div>
     <div class="empty-widget" v-if="page.data.value.widgets.length === 0">请将组件拖拽到此处</div>
-    <el-scrollbar class="scroll-bar">
-        <draggable class="draggable-box" :list="page.data.value.widgets"
+    <el-scrollbar class="scroll-bar" :min-size="100">
+        <draggable class="draggable-box page" :list="page.data.value.widgets"
             v-bind="{ group: 'dragGroup', ghostClass: 'ghost', animation: 300 }" :component-data="{ name: 'fade' }"
             @start="onStart" @end="onEnd" item-key="id" :sort="true">
             <template #item="{ element: widget, index }">
@@ -91,6 +91,7 @@ const onEnd = () => {
 
 .scroll-bar {
     height: calc(100% - 30px);
+
     // &:deep(.el-scrollbar__view) {
     //     height: 100%;
     // }
@@ -99,6 +100,7 @@ const onEnd = () => {
         height: 100%;
         width: 100%;
         min-height: 500px;
+        overflow: hidden;
     }
 }
 

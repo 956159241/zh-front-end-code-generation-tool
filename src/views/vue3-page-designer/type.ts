@@ -13,6 +13,7 @@ export interface TWidget {
     isContainer: boolean
     icon?: string
     id: string
+    name?: string
     settings: TRowWidgetSettings
     widgets?: Array<TRowWidget>
 }
@@ -23,11 +24,10 @@ export interface TRowWidget extends TWidget {
 
 export interface TColumnWidget extends TWidget {
     span?: number
-    height?: number | string
 }
 
 export interface TWidgetCommonSettings {
-    name?: string
+    // name?: string
     hidden?: boolean
     customClass?: string
     height?: string | number
