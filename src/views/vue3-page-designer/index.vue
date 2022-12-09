@@ -6,6 +6,7 @@
                 <el-option label="中文" value="中文"></el-option>
                 <el-option label="英文" value="英文"></el-option>
             </el-select>
+            <span class="test">test</span>
         </div>
         <div class="content">
             <splitpanes class="default-theme" style="height: 100%">
@@ -45,10 +46,14 @@ const changLan = (val: string) => {
 
 const page = new Page();
 
-
+const test = ref('red');
 </script>
 
 <style lang="scss" scoped>
+.test {
+    color: v-bind(test);
+}
+
 .box {
     height: 100%;
     width: 100%;

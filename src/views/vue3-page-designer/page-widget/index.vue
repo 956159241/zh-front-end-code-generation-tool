@@ -21,10 +21,10 @@
                 </component>
             </template>
         </draggable>
+        <ZHModal :modal="modal" @on-opened="modalOnOpened" @close="modalClose">
+            <div id="container" style="height:100%;"></div>
+        </ZHModal>
     </div>
-    <ZHModal :modal="modal" @on-opened="modalOnOpened">
-        <div id="container" style="height:100%;"></div>
-    </ZHModal>
 </template>
 
 <script lang="ts" setup>
@@ -33,7 +33,13 @@ import draggable from 'vuedraggable';
 import { ElButton, ElInput } from 'element-plus';
 import Page from '../page';
 import ZHModal from '@/components/zh-modal/index.vue';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import * as monaco from 'monaco-editor';
+// import MonacoEditor from 'monaco-editor-vue3';
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
+import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
+import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
+import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
+import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 
 // const allControls = { ...controls };
 
@@ -45,6 +51,7 @@ const getComponentName = (widget: any) => {
 //     return controls['row'];
 // });
 
+const test = ref();
 
 const props = defineProps({
     page: {
@@ -66,18 +73,58 @@ const myArray = ref([]);
 const onStart = () => {
     drag.value = true;
 };
+
 //拖拽结束事件
 const onEnd = () => {
     drag.value = false;
 };
 
 //#region 查看JSON
-const modal = ref({ show: false, title: '查看JSON' });
+const modal = ref({ show: false, title: '查看JSON', loadingPage: false, customClass: 'json-view' });
 const modalOnOpened = () => {
-    modal.value.title = 'modal opnend';
+    modal.value.loadingPage = true;
+    let editor: monaco.editor.IStandaloneCodeEditor | monaco.editor.ICodeEditor;
+    if (monaco.editor.getEditors().length > 0) {
+        editor = monaco.editor.getEditors()[0];
+    } else {
+        editor = monaco.editor.create(document.getElementById("container") as HTMLElement, {
+            theme: 'vs-dark',
+            readOnly: false,
+            language: 'json',
+            value: JSON.stringify(page.value.data.value),
+        });
+    }
+
+    setTimeout(() => { editor.getAction('editor.action.formatDocument').run(); }, 100);
+    setTimeout(() => { modal.value.loadingPage = false; }, 1000);
+};
+
+const modalClose = () => {
+    modal.value.show = false;
+};
+
+self.MonacoEnvironment = {
+    getWorker(workerId, label) {
+        if (label === 'json') {
+            return new jsonWorker();
+        }
+        return new editorWorker();
+    },
 };
 //#endregion
+
+const color = ref('red');
 </script>
+
+<style lang="scss">
+.json-view.zh-modal {
+    .el-dialog__body {
+        height: 44vh;
+        padding: 0px;
+    }
+}
+</style>
+
 
 <style lang="scss" scoped>
 .box {

@@ -1,8 +1,11 @@
 <template>
   <el-dialog v-model="modal.show" :title="modal.title" :closeOnClickModal="false" :width="modal.width"
-    @close="zhModal.close" append-to-body :top="modal.top" :fullscreen="modal.fullscreen"
-    :class="modal.customClass || '' + 'zh-modal'" @opened="onOpened">
-    <slot></slot>
+    @close="zhModal.close" :top="modal.top" :fullscreen="modal.fullscreen"
+    :class="(modal.customClass || '') + ' zh-modal'" @opened="onOpened" :append-to-body="true">
+    <div class="body-box">
+      <slot></slot>
+
+    </div>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="zhModal.cancel">取消</el-button>
@@ -51,5 +54,10 @@ export default { name: 'ZHModal' };
   font-size: 18px;
   font-weight: bolder;
   border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+}
+
+.body-box {
+  height: 100%;
+  width: 100%;
 }
 </style>
