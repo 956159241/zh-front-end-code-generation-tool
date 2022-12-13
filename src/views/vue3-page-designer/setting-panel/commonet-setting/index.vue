@@ -1,6 +1,7 @@
 <template>
     <el-scrollbar class="box">
         <RowSetting v-if="selectedWidgetType === 'row'" :page="page"></RowSetting>
+        <ColumnSetting v-if="selectedWidgetType === 'column'" :page="page"></ColumnSetting>
     </el-scrollbar>
 
 </template>
@@ -9,6 +10,7 @@
 import { computed, PropType, toRefs } from 'vue';
 import Page from '../../page';
 import RowSetting from './RowSetting.vue';
+import ColumnSetting from './ColumnSetting.vue';
 
 const props = defineProps({
     page: {

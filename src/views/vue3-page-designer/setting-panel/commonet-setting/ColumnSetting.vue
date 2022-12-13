@@ -7,25 +7,6 @@
         <el-form-item label="栅格高度" prop="height">
             <el-input v-model="formModel.settings.height"></el-input>
         </el-form-item>
-        <el-form-item label="栅格间隔">
-            <el-input v-model="formModel.settings.gutter"></el-input>
-        </el-form-item>
-        <el-divider>栅格列</el-divider>
-        <el-form-item v-for="(item, index) in formModel.columns" :key="index" label-width="25px">
-            <div style="width: 100%; display: flex;">
-                <div style="width: 30px; padding-right: 15px;">列{{ index + 1 }}</div>
-                <div style="flex: 1;"><el-input type="number" v-model="item.span"></el-input></div>
-                <div style="width: 30px; padding-left: 7px; cursor: pointer;">
-                    <el-icon style="color: red;" @click="deleteColumn(item.id)">
-                        <Delete />
-                    </el-icon>
-                </div>
-            </div>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" style="width: 100%;" @click="addColumn">添加新列</el-button>
-        </el-form-item>
-
     </el-form>
 </template>
 
@@ -53,7 +34,6 @@ const { selectedWidgets } = storeToRefs(store);
 const formModel = ref({
     settings: {
         height: '',
-        gutter: '',
         name: '',
     },
     columns: [],
@@ -80,21 +60,6 @@ const validate = () => {
 const updateWidget = () => {
     if (selectedWidgets.value && selectedWidgets.value[0]) {
         page.value.updateWidget(selectedWidgets.value[0]);
-    }
-};
-
-const addColumn = () => {
-    const newWidget = _.cloneDeep(selectedWidgets.value[0]);
-    const column = page.value.generateColumn();
-    const widget = page.value.findWidget(newWidget, page.value.data.value.widgets);
-    widget && widget.columns.push(column);
-};
-
-const deleteColumn = (id: string) => {
-    const newWidget = _.cloneDeep(selectedWidgets.value[0]);
-    const widget = page.value.findWidget(newWidget, page.value.data.value.widgets);
-    if (widget && widget.columns && widget.columns.length > 0) {
-        widget.columns = widget.columns.filter((x: any) => x.id !== id);
     }
 };
 

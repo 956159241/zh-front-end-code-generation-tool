@@ -57,6 +57,7 @@ import _ from 'lodash';
 import { controls } from '@/views/vue3-page-designer/widget-panel/widget-lib/widgets/index';
 import { ElScrollbar, ElCollapse, ElCollapseItem } from 'element-plus';
 import { TColumnWidget } from '../../type';
+import { _cloneContainerWidget } from '../utils';
 
 
 const activeName = ref('1');
@@ -88,66 +89,7 @@ const handleFieldWidgetClone = (origin: any) => {
 };
 
 const handleContainerWidgetClone = (origin: any) => {
-    let newCon = _.cloneDeep(origin);
-    const uuid = uuidv4();
-    newCon.id = uuid;
-    newCon.settings.name = newCon.type.replace(/-/g, '') + '-' + uuid;
-    if (newCon.type === 'row') {
-        let newCol: TColumnWidget = {
-            id: '',
-            name: '',
-            type: 'column',
-            isContainer: true,
-            icon: 'grid-col',
-            // internal: true,
-            widgets: [],
-            span: 12,
-            settings: {
-                // hidden: false,
-                // offset: 0,
-                // push: 0,
-                // pull: 0,
-                // responsive: false,  //是否开启响应式布局
-                // md: 12,
-                // sm: 12,
-                // xs: 12,
-                // customClass: '',  //自定义css类名
-            }
-        };
-        let tmpId = uuidv4()
-        newCol.id = 'column-' + tmpId
-        newCol.name = 'column' + tmpId
-        newCon.columns.push(newCol)
-
-
-        newCol = _.cloneDeep(newCol)
-        tmpId = uuidv4()
-        newCol.id = 'column-' + tmpId
-        newCol.name = 'row-' + tmpId
-        newCon.columns.push(newCol)
-    } else if (newCon.type === 'table') {
-        // let newRow = {cols: []}
-        // newRow.id = 'table-row-' + generateId()
-        // newRow.merged = false
-        // let newCell = deepClone( this.getContainerByType('table-cell') )
-        // newCell.id = 'table-cell-' + generateId()
-        // newCell.options.name = newCell.id
-        // newCell.merged = false
-        // newCell.options.colspan = 1
-        // newCell.options.rowspan = 1
-        // newRow.cols.push(newCell)
-        // newCon.rows.push(newRow)
-    } else if (newCon.type === 'tab') {
-        // let newTabPane = _.cloneDeep( this.getContainerByType('tab-pane') )
-        // newTabPane.id = 'tab-pane-' + generateId()
-        // newTabPane.options.name = 'tab1'
-        // newTabPane.options.label = 'tab 1'
-        // newCon.tabs.push(newTabPane)
-    }
-    //newCon.options.customClass = []
-
-    delete newCon.displayName
-    return newCon
+    return _cloneContainerWidget(origin);
 };
 </script>
 
