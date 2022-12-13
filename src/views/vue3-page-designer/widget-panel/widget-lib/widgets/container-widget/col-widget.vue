@@ -4,7 +4,7 @@
       :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
       style="height: 100%; width: 100%;">
       <template #item="{ element: subWidget, index: swIdx }">
-        <div class="form-widget-list">
+        <div class="widget-list" style="width: 100%; height: 100%;">
           <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
           </component>
         </div>
@@ -109,7 +109,7 @@ export default { name: 'column' };
 
 <style lang="scss" scoped>
 .column {
-  min-height: 38px !important;
+  // min-height: 38px !important;
   padding: 3px;
   // outline: 1px dashed var(--el-color-primary);
   position: relative;

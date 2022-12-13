@@ -117,7 +117,7 @@ export default { name: 'container-wrapper' };
   align-items: center;
   // margin: 5px;
   /* 垂直居中 */
-  margin: 5px;
+  // margin: 5px;
 
   :deep(.el-divider--horizontal) {
     margin: 0;

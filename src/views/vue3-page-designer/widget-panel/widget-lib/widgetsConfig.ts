@@ -11,14 +11,14 @@ export const customControls = [
 export const containerControls: Array<TRowWidget> = [
 	{
 		id: '',
+		name: '',
 		type: 'row',
 		isContainer: true,
 		icon: 'input',
 		columns: [],
 		settings: {
-			height: '100px',
+			height: '42px',
 			width: '',
-			name: '',
 			hidden: false,
 			customClass: '',
 		},

@@ -11,4 +11,11 @@ export interface TZHModal {
   top?: string
   fullscreen?: boolean
   customClass?: string
+
+  footer?: TZHModalFooter
+}
+
+export interface TZHModalFooter {
+  hasCancelButton?: boolean,
+  hasSubmitButton?: boolean,
 }

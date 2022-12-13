@@ -44,7 +44,7 @@ export default { name: 'row' };
 
 <style lang="scss" scoped>
 .row {
-  min-height: 50px;
+  // min-height: 50px;
   // outline: 2px solid var(--el-color-primary);
   padding: 2px;
   border: 1px dashed rgba(170, 170, 170, 0.75);

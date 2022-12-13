@@ -6,10 +6,12 @@
       <slot></slot>
 
     </div>
-    <template #footer>
+    <template #footer v-if="modal.footer">
       <span class="dialog-footer">
-        <el-button @click="zhModal.cancel">取消</el-button>
-        <el-button type="primary" :loading="modal.loadingSubmit" @click="zhModal.submit">确定</el-button>
+        <el-button @click="zhModal.cancel"
+          v-if="modal.footer?.hasCancelButton || modal.footer?.hasCancelButton === undefined">取消</el-button>
+        <el-button type="primary" :loading="modal.loadingSubmit" @click="zhModal.submit"
+          v-if="modal.footer?.hasSubmitButton || modal.footer?.hasSubmitButton === undefined">确定</el-button>
       </span>
       <slot name="footer" />
     </template>

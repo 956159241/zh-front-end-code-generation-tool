@@ -21,7 +21,7 @@
                 </component>
             </template>
         </draggable>
-        <ZHModal :modal="modal" @on-opened="modalOnOpened" @close="modalClose">
+        <ZHModal :modal="modal" @on-opened="modalOnOpened" @close="modalClose" @submit="modalClose">
             <div id="container" style="height:100%;"></div>
         </ZHModal>
     </div>
@@ -40,6 +40,7 @@ import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
 import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
+import { TZHModal } from '@/components/zh-modal/type';
 
 // const allControls = { ...controls };
 
@@ -80,7 +81,16 @@ const onEnd = () => {
 };
 
 //#region 查看JSON
-const modal = ref({ show: false, title: '查看JSON', loadingPage: false, customClass: 'json-view' });
+const modal = ref({
+    show: false,
+    title: '查看JSON',
+    loadingPage: false,
+    customClass: 'json-view',
+    footer: {
+        hasSubmitButton: true,
+        hasCancelButton: false,
+    }
+} as TZHModal);
 const modalOnOpened = () => {
     modal.value.loadingPage = true;
     let editor: monaco.editor.IStandaloneCodeEditor | monaco.editor.ICodeEditor;
@@ -119,7 +129,7 @@ const color = ref('red');
 <style lang="scss">
 .json-view.zh-modal {
     .el-dialog__body {
-        height: 44vh;
+        height: 55vh;
         padding: 0px;
     }
 }
