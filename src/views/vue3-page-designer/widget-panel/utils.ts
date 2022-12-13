@@ -3,11 +3,11 @@ import _ from 'lodash';
 import { TColumnWidget } from '../type';
 
 export const _cloneContainerWidget = (origin: any) => {
-    let newCon = _.cloneDeep(origin);
+    let newWidget = _.cloneDeep(origin);
     const uuid = uuidv4();
-    newCon.id = uuid;
-    newCon.name = newCon.type.replace(/-/g, '') + '-' + uuid;
-    if (newCon.type === 'row') {
+    newWidget.id = uuid;
+    newWidget.name = newWidget.type.replace(/-/g, '') + '-' + uuid;
+    if (newWidget.type === 'row') {
         let newCol: TColumnWidget = {
             id: '',
             name: '',
@@ -23,15 +23,21 @@ export const _cloneContainerWidget = (origin: any) => {
         let tmpId = uuidv4();
         newCol.id = tmpId;
         newCol.name = 'column-' + tmpId;
-        newCon.columns.push(newCol);
+        newWidget.columns.push(newCol);
 
         newCol = _.cloneDeep(newCol);
         tmpId = uuidv4();
         newCol.id = tmpId;
         newCol.name = 'column-' + tmpId;
-        newCon.columns.push(newCol);
-    } else if (newCon.type === 'table') {
-    } else if (newCon.type === 'tab') {
+        newWidget.columns.push(newCol);
+    } else if (newWidget.type === 'table') {
+    } else if (newWidget.type === 'tab') {
     }
-    return newCon
+    return newWidget
+};
+
+export const _cloneCustomWidget = (origin: any) => {
+    let newWidget = _.cloneDeep(origin);
+
+    return newWidget;
 };

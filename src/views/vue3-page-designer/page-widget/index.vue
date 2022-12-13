@@ -4,8 +4,8 @@
             <el-row class="row">
                 <el-col class="column" :span="24">
                     <!-- <el-button type="primary" link>清空</el-button>
-                    <el-button type="primary" link>预览</el-button>
                     <el-button type="primary" link>导入JSON</el-button> -->
+                    <el-button type="primary" link @click="() => modalPreview.show = true">预览</el-button>
                     <el-button type="primary" link @click="() => modal.show = true">查看JSON</el-button>
                     <!-- <el-button type="primary" link>导出代码</el-button>
                     <el-button type="primary" link>下载代码</el-button> -->
@@ -21,8 +21,16 @@
                 </component>
             </template>
         </draggable>
+
+        <!-- 查看json -->
         <ZHModal :modal="modal" @on-opened="modalOnOpened" @close="modalClose" @submit="modalClose">
             <div id="container" style="height:100%;"></div>
+        </ZHModal>
+
+        <!-- 预览 -->
+        <ZHModal :modal="modalPreview" @on-opened="modalPreviewOnOpened" @close="modalPreviewClose"
+            @submit="modalPreviewClose">
+            <Preview :page="page"></Preview>
         </ZHModal>
     </div>
 </template>
@@ -41,6 +49,7 @@ import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import { TZHModal } from '@/components/zh-modal/type';
+import Preview from './Preview.vue';
 
 // const allControls = { ...controls };
 
@@ -123,11 +132,33 @@ self.MonacoEnvironment = {
 };
 //#endregion
 
+//#region 预览
+const modalPreview = ref({
+    show: false,
+    title: '预览',
+    loadingPage: false,
+    customClass: 'modal-page-preview',
+    footer: {
+        hasSubmitButton: true,
+        hasCancelButton: false,
+    }
+} as TZHModal);
+const modalPreviewOnOpened = () => {
+    modalPreview.value.loadingPage = true;
+};
+
+const modalPreviewClose = () => {
+    modalPreview.value.show = false;
+};
+
+//#endregion
+
 const color = ref('red');
 </script>
 
 <style lang="scss">
-.json-view.zh-modal {
+.json-view.zh-modal,
+.modal-page-preview.zh-modal {
     .el-dialog__body {
         height: 55vh;
         padding: 0px;

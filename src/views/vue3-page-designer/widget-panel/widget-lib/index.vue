@@ -3,7 +3,7 @@
         <el-collapse v-model="activeName" class="widget-collapse">
             <!-- <el-collapse-item name="1" title="自定义控件">
                 <draggable tag="ul" :list="customControls" item-key="key"
-                    :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="handleContainerWidgetClone"
+                    :group="{ name: 'dragGroup', pull: 'clone', put: false }" :clone="handleCustomWidgetClone"
                     ghost-class="ghost" :sort="false">
                     <template #item="{ element: fld }">
                         <li class="field-widget-item" :title="fld.displayName">
@@ -57,7 +57,7 @@ import _ from 'lodash';
 import { controls } from '@/views/vue3-page-designer/widget-panel/widget-lib/widgets/index';
 import { ElScrollbar, ElCollapse, ElCollapseItem } from 'element-plus';
 import { TColumnWidget } from '../../type';
-import { _cloneContainerWidget } from '../utils';
+import { _cloneContainerWidget, _cloneCustomWidget } from '../utils';
 
 
 const activeName = ref('1');
@@ -90,6 +90,10 @@ const handleFieldWidgetClone = (origin: any) => {
 
 const handleContainerWidgetClone = (origin: any) => {
     return _cloneContainerWidget(origin);
+};
+
+const handleCustomWidgetClone = (origin: any) => {
+    return _cloneCustomWidget(origin);
 };
 </script>
 

@@ -25,7 +25,6 @@
         <el-form-item>
             <el-button type="primary" style="width: 100%;" @click="addColumn">添加新列</el-button>
         </el-form-item>
-
     </el-form>
 </template>
 

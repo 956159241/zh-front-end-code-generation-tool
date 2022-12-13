@@ -3,8 +3,12 @@ import { TRowWidget, TWidget } from '../../type';
 export const customControls = [
 	{
 		id: '',
+		name: '',
 		type: 'zhtable',
 		icon: 'input',
+		settings: {
+
+		},
 	},
 ];
 
