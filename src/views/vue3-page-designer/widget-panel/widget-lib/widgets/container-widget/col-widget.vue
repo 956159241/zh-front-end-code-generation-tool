@@ -5,7 +5,7 @@
       :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
       style="height: 100%; width: 100%;">
       <template #item="{ element: subWidget, index: swIdx }">
-        <div class="widget-list" style="width: 100%; height: 100%;">
+        <div class="widget">
           <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
           </component>
         </div>

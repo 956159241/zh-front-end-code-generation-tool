@@ -1,8 +1,6 @@
 <template>
-  <div class="widget-wrapper" :class="{ 'design-time-bottom-margin': true }">
-    <div class="static-content-item" @click.stop="selectField(widget)">
-      <slot></slot>
-    </div>
+  <div class="widget-wrapper" @click.stop="selectField(widget)">
+    <slot></slot>
 
     <template v-if="true">
       <div class="field-action"

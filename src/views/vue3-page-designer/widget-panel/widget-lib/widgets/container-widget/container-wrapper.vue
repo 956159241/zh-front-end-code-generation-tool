@@ -1,5 +1,5 @@
 <template>
-  <div class="widget-wrapper" :class="{ 'design-time-bottom-margin': true, height: widget.settings.height }">
+  <div class="widget-wrapper" :class="{ height: widget.settings.height }">
     <div class="static-content-item" @click.stop="selectField(widget)" style="height: 100%;">
       <slot></slot>
     </div>
