@@ -6,9 +6,10 @@
                 <el-option label="中文" value="中文"></el-option>
                 <el-option label="英文" value="英文"></el-option>
             </el-select>
-            <span class="test">test</span>
+
+            <el-button link @click="toggleFullScreen" type="primary">{{ isFullScreen ? '退出全屏' : '全屏' }}</el-button>
         </div>
-        <div class="content">
+        <div class="content" id="content-box">
             <splitpanes class="default-theme" style="height: 100%">
                 <pane :size="25" class="pane">
                     <widget-panel :page="page"></widget-panel>
@@ -34,11 +35,14 @@ import PageWidget from './page-widget/index.vue';
 import { TPage } from './type';
 import { v4 as uuidv4 } from 'uuid';
 import Page from './page';
+import UIHelper from './uiHelper';
 
 const { changeLocale } = useLocale();
 const { t } = useI18n();
 
 const lang = ref('中文');
+
+const dom = document.getElementById('test');
 
 const changLan = (val: string) => {
     changeLocale(val === '中文' ? 'zh_CN' : 'en');
@@ -46,14 +50,16 @@ const changLan = (val: string) => {
 
 const page = new Page();
 
-const test = ref('red');
+const isFullScreen = ref(false);
+const toggleFullScreen = () => {
+    const dom: Element = document.getElementsByClassName('box')[0];
+    UIHelper.toggleFullScreen(dom, !isFullScreen.value);
+    isFullScreen.value = !isFullScreen.value;
+};
+
 </script>
 
 <style lang="scss" scoped>
-.test {
-    color: v-bind(test);
-}
-
 .box {
     height: 100%;
     width: 100%;

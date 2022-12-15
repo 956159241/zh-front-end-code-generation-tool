@@ -9,6 +9,8 @@
                     <el-button type="primary" link @click="() => modal.show = true">查看JSON</el-button>
                     <!-- <el-button type="primary" link>导出代码</el-button>
                     <el-button type="primary" link>下载代码</el-button> -->
+                    <el-button link @click="toggleFullScreen" type="primary">{{ isFullScreen ? '退出全屏' : '全屏'
+                    }}</el-button>
                 </el-col>
             </el-row>
         </div>
@@ -50,12 +52,20 @@ import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import { TZHModal } from '@/components/zh-modal/type';
 import Preview from './Preview.vue';
+import UIHelper from '../uiHelper';
 
 // const allControls = { ...controls };
 
 const getComponentName = (widget: any) => {
     return widget.type + '-control';
 }
+
+const isFullScreen = ref(false);
+const toggleFullScreen = () => {
+    const dom: Element = document.querySelectorAll('#content-box')[0];
+    UIHelper.toggleFullScreen(dom, !isFullScreen.value);
+    isFullScreen.value = !isFullScreen.value;
+};
 
 // onMounted(() => {
 //     return controls['row'];
