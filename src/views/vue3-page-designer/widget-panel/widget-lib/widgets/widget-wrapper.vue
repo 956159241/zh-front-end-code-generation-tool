@@ -1,5 +1,5 @@
 <template>
-  <div class="widget-wrapper" @click.stop="selectField(widget)">
+  <div class="widget-wrapper" @click.stop="selectField(widget)" :style="{ ...widget.settings.style }">
     <slot></slot>
 
     <template v-if="true">

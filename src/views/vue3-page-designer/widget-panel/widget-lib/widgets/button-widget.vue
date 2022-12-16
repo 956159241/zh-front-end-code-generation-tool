@@ -1,5 +1,5 @@
 <template>
-  <widget-wrapper>
+  <widget-wrapper :page="page" :widget="widget">
     <!-- <el-button :type="field.options.type" :size="widgetSize" :plain="field.options.plain" :round="field.options.round"
       :circle="field.options.circle" :icon="field.options.icon" :disabled="field.options.disabled"
       @click="handleButtonWidgetClick">
@@ -10,7 +10,22 @@
 </template>
 
 <script lang="ts" setup>
+import Page from '@/views/vue3-page-designer/page';
+import { PropType, toRefs } from 'vue';
 import WidgetWrapper from './widget-wrapper.vue';
+
+const props = defineProps({
+  widget: {
+    type: Object as PropType<any>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
+
+  page: {
+    type: Object as PropType<Page>, //PropType<FormSettingsModel>
+    required: true, // 必传
+  },
+});
+const { widget, page } = toRefs(props);
 
 </script>
 

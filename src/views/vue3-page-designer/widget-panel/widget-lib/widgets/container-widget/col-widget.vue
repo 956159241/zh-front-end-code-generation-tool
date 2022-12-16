@@ -5,7 +5,11 @@
       :component-data="{ name: 'fade', type: 'transtion-group' }" handle=".drag-handler"
       style="height: 100%; width: 100%;">
       <template #item="{ element: subWidget, index: swIdx }">
-        <div class="widget">
+        <div class="widget" v-if="subWidget.isContainer">
+          <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
+          </component>
+        </div>
+        <div class="widget" v-else :style="{ ...subWidget.settings.style }">
           <component :is="getComponentName(subWidget)" :key="subWidget.id" :widget="subWidget" :page="page">
           </component>
         </div>
